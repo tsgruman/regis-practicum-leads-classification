@@ -64,7 +64,7 @@ The converted leads by page views revealed significant outlier data, so I examin
 
 ## Extreme Gradient Boosting (XGBoost)
 
-## Support Vector Models (SVM)
+## Support Vector Machines (SVM)
 
 # Discussion
 
