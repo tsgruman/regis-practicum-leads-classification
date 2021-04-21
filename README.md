@@ -53,3 +53,21 @@ Since the vast majority of converted leads did not come from ads, I wanted to se
 The converted leads by page views revealed significant outlier data, so I examined a boxplot of page views. According to the summary print of the dataset, average page view values are about 2 per lead. The boxplot revealed page views far beyond that value, which may indicate bot activity and may not be true leads. For this reason, I removed outlier page view values to further clean the dataset.
 
 ![Page Views distribution](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/page-views-boxplot.png)
+
+# Feature Selection
+
+# Classification Modeling 
+
+## K-Nearest Neighbors (KNN)
+
+## Random Forest
+
+## Extreme Gradient Boosting (XGBoost)
+
+## Support Vector Models (SVM)
+
+# Discussion
+
+# Further Research
+
+# References
