@@ -37,4 +37,7 @@ Additionally, many null values needed to be cleaned and removed. For example, cu
 
 Finally, I dropped multiple columns that were not pertinent to my modeling needs. These included ID numbers, location data, tags, and Lead Quality, which is a score based on employee "intuition" and I deemed too subjective to use.
 
+# Exploratory Data Analysis
+To begin my exploratory data analysis, I graphed the count of my target variable Converted leads to view the distribution of converted vs. unconverted leads. There are about 1/3 more unconverted leads (value = 0) compared to converted leads.
 
+![Count of Converted Leads](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/converted-leads.png)
