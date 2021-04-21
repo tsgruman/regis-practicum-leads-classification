@@ -49,3 +49,7 @@ I wanted to know how many converted leads originated from advertising and which 
 Since the vast majority of converted leads did not come from ads, I wanted to see what else may have played a factor in lead conversion. Time on website and page views are both important search engine optimization (SEO) values, so I plotted variables against these. The following shows leads by time on website and page views per visit. It also shows lead origins by time on website and page views. 
 
 ![Time on Website and Page View stats](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/converted-lead-stats.png)
+
+The converted leads by page views revealed significant outlier data, so I examined a boxplot of page views.
+
+![Page Views distribution]
