@@ -42,4 +42,6 @@ To begin my exploratory data analysis, I plotted the count of my target variable
 
 ![Count of Converted Leads](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/converted-leads.png)
 
-I wanted to know how many converted leads originated from advertising and which advertising platform. 
+I wanted to know how many converted leads originated from advertising and which advertising platform. It appears most converted leads actually did not come through advertising.
+
+![Converted Leads Ads](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/ads.png)
