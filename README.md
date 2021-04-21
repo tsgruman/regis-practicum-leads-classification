@@ -45,3 +45,7 @@ To begin my exploratory data analysis, I plotted the count of my target variable
 I wanted to know how many converted leads originated from advertising and which advertising platform. It appears most converted leads actually did not come through advertising.
 
 ![Converted Leads Ads](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/ads.png)
+
+Since the vast majority of converted leads did not come from ads, I wanted to see what else may have played a factor in lead conversion. Time on website and page views are both important search engine optimization (SEO) values, so I plotted variables against these. The following shows leads by time on website and page views per visit. It also shows lead origins by time on website and page views. 
+
+![Time on Website and Page View stats](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/converted-lead-stats.png)
