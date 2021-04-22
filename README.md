@@ -100,6 +100,14 @@ lm$optVariables
  [9] "Last.Notable.Activity.Modified"                                         
 [10] "Do.Not.Email"                                                           
 ```
+Based on these results, I have decided to select the following features:
+* Total.Time.Spent.on.Website
+* Asymmetrique.Activity.Score
+* What.is.your.current.occupation.Working.Professional
+* What.matters.most.to.you.in.choosing.a.course.Better.Career.Prospects
+* Lead.Profile.Potential.Lead
+* Lead.Origin.Lead.Add.Form
+
 # Classification Modeling 
 
 ## K-Nearest Neighbors (KNN)
