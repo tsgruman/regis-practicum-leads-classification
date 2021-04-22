@@ -100,7 +100,7 @@ lm$optVariables
  [9] "Last.Notable.Activity.Modified"                                         
 [10] "Do.Not.Email"                                                           
 ```
-Based on these results, I have decided to select the following features:
+Based on these results, I have decided to select the following features for modeling:
 * Total.Time.Spent.on.Website
 * Asymmetrique.Activity.Score
 * What.is.your.current.occupation.Working.Professional
