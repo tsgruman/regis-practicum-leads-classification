@@ -54,14 +54,15 @@ The converted leads by page views revealed significant outlier data, so I examin
 ![Page Views distribution](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/page-views-boxplot.png)
 
 # Feature Selection
-For classification modeling, I needed to reduce the number of features in my dataset to choose only the most important variables that may impact the output. I wanted to reduce features from the existing 126 - the number of variables grew greatly with one-hot encoding - down to between 5 - 10 variables. To achieve this, I used three methods: Boruta algorithm (Boruta package), rpart model (rpart package), and recursive feature selection (caret package). I then compared the results and selected the top features that consistently appeared in each method. 
+For classification modeling, I needed to reduce the number of features in my dataset to choose only the most important variables that may impact the output. I wanted to reduce features from the existing 126 - the number of variables grew greatly with one-hot encoding - down to between 5 - 10 variables. To achieve this, I used three methods: Boruta algorithm (Boruta package), rpart model (rpart package), and recursive feature selection (rfe from caret package). I then compared the results and selected the top features that consistently appeared in each method. 
 
-## Boruta
+## Comparing Results
+Results from the Boruta algorithm:
 ```
-boruta <- Boruta(Converted ~ ., data = train, doTrace = 1)
-imp_score <- attStats(boruta)
-imps = imp_score[imp_score$decision != 'Rejected', c('meanImp', 'decision')]
-head(imps[order(-imps$meanImp), ], 10)
+> boruta <- Boruta(Converted ~ ., data = train, doTrace = 1)
+> imp_score <- attStats(boruta)
+> mps = imp_score[imp_score$decision != 'Rejected', c('meanImp', 'decision')]
+> head(imps[order(-imps$meanImp), ], 10)
                                                                        meanImp  decision
 Total.Time.Spent.on.Website                                           53.22589 Confirmed
 Asymmetrique.Activity.Score                                           47.51818 Confirmed
@@ -74,7 +75,14 @@ Last.Notable.Activity.SMS.Sent                                        21.41469 C
 What.is.your.current.occupation.Unemployed                            18.73294 Confirmed
 Last.Notable.Activity.Modified                                        18.18502 Confirmed
 ```
+Results from rpart: 
+```
 
+```
+Results from rfe: 
+```
+
+```
 # Classification Modeling 
 
 ## K-Nearest Neighbors (KNN)
