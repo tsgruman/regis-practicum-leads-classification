@@ -76,9 +76,9 @@ What.is.your.current.occupation.Unemployed                            18.73294 C
 Last.Notable.Activity.Modified                                        18.18502 Confirmed
 ```
 Results from rpart: 
-```
 
-```
+![RPart Variable Importance Plot](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/rpart-var-imp.png)
+
 Results from rfe: 
 ```
 
