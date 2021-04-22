@@ -20,7 +20,6 @@ Libraries used include:
 * RRF - Feature selection for Random Forest models
 * Boruta - Feature selection tools
 * ggpubr - Data visualization for ggplot2
-* corrplot - Correlation matrix tools
 * caret - Various functions for classification and regression modeling
 * randomForest - Random Forests classfication and regression modeling
 * xgboost - Extreme Gradient Boosting modeling interface
@@ -55,6 +54,26 @@ The converted leads by page views revealed significant outlier data, so I examin
 ![Page Views distribution](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/page-views-boxplot.png)
 
 # Feature Selection
+For classification modeling, I needed to reduce the number of features in my dataset to choose only the most important variables that may impact the output. I wanted to reduce features from the existing 126 - the number of variables grew greatly with one-hot encoding - down to between 5 - 10 variables. To achieve this, I used three methods: Boruta algorithm (Boruta package), rpart model (rpart package), and recursive feature selection (caret package). I then compared the results and selected the top features that consistently appeared in each method. 
+
+## Boruta
+```
+boruta <- Boruta(Converted ~ ., data = train, doTrace = 1)
+imp_score <- attStats(boruta)
+imps = imp_score[imp_score$decision != 'Rejected', c('meanImp', 'decision')]
+head(imps[order(-imps$meanImp), ], 10)
+                                                                       meanImp  decision
+Total.Time.Spent.on.Website                                           53.22589 Confirmed
+Asymmetrique.Activity.Score                                           47.51818 Confirmed
+Lead.Profile.Potential.Lead                                           26.75731 Confirmed
+What.matters.most.to.you.in.choosing.a.course.Better.Career.Prospects 25.78960 Confirmed
+What.is.your.current.occupation.Working.Professional                  25.72504 Confirmed
+Lead.Origin.Lead.Add.Form                                             23.05170 Confirmed
+Last.Activity.SMS.Sent                                                22.52003 Confirmed
+Last.Notable.Activity.SMS.Sent                                        21.41469 Confirmed
+What.is.your.current.occupation.Unemployed                            18.73294 Confirmed
+Last.Notable.Activity.Modified                                        18.18502 Confirmed
+```
 
 # Classification Modeling 
 
