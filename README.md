@@ -76,12 +76,29 @@ What.is.your.current.occupation.Unemployed                            18.73294 C
 Last.Notable.Activity.Modified                                        18.18502 Confirmed
 ```
 Results from rpart: 
-
+```
+> rpart <- train(Converted ~ ., data = train, method = "rpart")
+> rpart_imp <- varImp(rpart)
+> plot(rpart_imp, top = 20, main = "RPart Variable Importance")
+```
 ![RPart Variable Importance Plot](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/rpart-var-imp.png)
 
 Results from rfe: 
 ```
+contr <- rfeControl(functions = rfFuncs, method = "repeatedcv", repeats = 5, verbose = FALSE)
+lm <- rfe(x=train[,c(2:126)], y=train$Converted, rfeControl = contr)
+lm$optVariables
 
+ [1] "Total.Time.Spent.on.Website"                                            
+ [2] "Asymmetrique.Activity.Score"                                            
+ [3] "What.is.your.current.occupation.Working.Professional"                   
+ [4] "Lead.Profile.Potential.Lead"                                            
+ [5] "What.matters.most.to.you.in.choosing.a.course.Better.Career.Prospects"  
+ [6] "Lead.Origin.Lead.Add.Form"                                              
+ [7] "Last.Activity.SMS.Sent"                                                 
+ [8] "Last.Notable.Activity.SMS.Sent"                                         
+ [9] "Last.Notable.Activity.Modified"                                         
+[10] "Do.Not.Email"                                                           
 ```
 # Classification Modeling 
 
