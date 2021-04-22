@@ -118,7 +118,7 @@ Based on these results, I have decided to select the following features for mode
 
 ## Support Vector Machines (SVM)
 
-# Discussion
+# Results & Discussion
 
 # Further Research
 
