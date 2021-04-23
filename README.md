@@ -110,10 +110,11 @@ Based on these results, I have decided to select the following features for mode
 
 # Classification Modeling 
 For classification modeling, I decided to use four different methods. I then tuned each model and compared the results to see which yielded the strongest model.
+
 ## K-Nearest Neighbors (KNN)
 The first method I used was K-Nearest Neighbors, or KNN. I used the train() function from the caret package which outputs a tuned model, so I didn't need to adjust the parameters after the first go. 
 
-After setting the control, I created the KNN model which selected k = 13 as the optimal value for the highest model accuracy. I then applied the optimized model to predict values against the test dataset. The KNN model's confusion matrix shows an accuracy of 84.21%. 
+After setting the control, I created the KNN model which selected k = 13 as the optimal value for the highest model accuracy. I then applied the optimized model to predict values against the test dataset.
 ```
 > contr <- trainControl(method="repeatedcv", number = 10, repeats = 3)
 > knnPred <- predict(knnFit, newdata = test, type = "prob")
@@ -129,11 +130,10 @@ Prediction   0   1
          1  91 400
                                           
                Accuracy : 0.8421          
-                 95% CI : (0.8221, 0.8607)
-    No Information Rate : 0.6244          
-    P-Value [Acc > NIR] : < 2.2e-16   
     ...
 ```
+The KNN model's confusion matrix shows an accuracy of 84.21%. 
+
 ## Random Forest
 The next method was Random Forest. I created a model with default values and then tuned the model using tuneRF() from the randomForest package to see if I could improve the model with a different mtry value, which is the number of variables sampled when splitting the tree nodes. The default value for classification modeling is the square root of the number of variables.
 ```
@@ -150,9 +150,6 @@ Prediction   0   1
          1  65 379
                                           
                Accuracy : 0.8457          
-                 95% CI : (0.8258, 0.8641)
-    No Information Rate : 0.6244          
-    P-Value [Acc > NIR] : < 2.2e-16    
     ...
     
 > features <- setdiff(names(train), "Converted")
@@ -167,15 +164,234 @@ Prediction   0   1
   )
 ```
 As seen in the graph below, using a different value for mtry did not reduce the out-of-bag (OOB) error for the model. There is no need to tune this model further.
+
 ![Random Forest tuning graph](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/tunerf-ob-error-01.png)
 
-The random forest model with default values had an accuracy of 84.57%. 
+The random forest model with default values had an accuracy of 84.57%, which is slightly higher than the KNN model.
 
 ## Extreme Gradient Boosting (XGBoost)
+The third classification modeling method I used was Extreme Gradient Boosting, or XGBoost, with the xgboost package. This modeling method required converting the data to a DMatrix, xgboost's internal data structure.
+
+The first model was made with default values. I then proceeded to adjust various values to see which yielded the best results.
+```
+> xgb <- xgboost(data = d_train,
+                 nrounds = 1000,
+                 objective = "binary:logistic",
+                 eval_metric = "error",
+                 eval_metric = "auc",
+                 early_stopping_rounds = 3)
+                 
+> xgb_pred <- predict(xgb, d_test, type = "response")
+> xgb_pred_response <- as.data.frame(xgb_pred)
+> xgb_pred_response$response <- as.factor(ifelse(xgb_pred_response > 0.5, 1, 0))
+> confusionMatrix(xgb_pred_response$response, test_var_factor)
+
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 778 149
+         1 108 384
+                                          
+               Accuracy : 0.8189          
+    ...
+
+```
+An accuracy score of 81.89% is a pretty good model, but it is already worse than the KNN and random forest models. For the second xgboost model, I lowered the max depth - maximum depth of the tree - value.
+```
+> xgb2 <- xgboost(data = d_train,
+                  max.depth = 3,
+                  nrounds = 1000,
+                  early_stopping_rounds = 3,
+                  objective = "binary:logistic",
+                  eval_metric = "error",
+                  eval_metric = "auc")
+
+> xgb2_pred <- predict(xgb2, d_test)
+> xgb2_pred_response <- as.data.frame(xgb2_pred)
+> xgb2_pred_response$response <- as.factor(ifelse(xgb2_pred_response > 0.5, 1, 0))
+> confusionMatrix(xgb2_pred_response$response, test_var_factor)
+
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 791 145
+         1  95 388
+                                        
+               Accuracy : 0.8309        
+    ...
+```
+The second model produced better accuracy at 83.09%. The next model had the default value for max depth but lower eta, which is the step size.
+```
+> xgb3 <- xgboost(data = d_train,
+                  eta = 0.1,
+                  nrounds = 1000,
+                  early_stopping_rounds = 3,
+                  objective = "binary:logistic",
+                  eval_metric = "error",
+                  eval_metric = "auc")
+                  
+> xgb3_pred <- predict(xgb3, d_test)
+> xgb3_pred_response <- as.data.frame(xgb3_pred)
+> xgb3_pred_response$response <- as.factor(ifelse(xgb3_pred_response > 0.5, 1, 0))
+> confusionMatrix(xgb3_pred_response$response, test_var_factor)
+
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 786 142
+         1 100 391
+                                          
+               Accuracy : 0.8295              
+    ...
+```
+Although this produced a higher accuracy than the default model, it was lower than the adjusted max depth model at just 82.95%.
+
+For the final model, I combined both adjusted parameters.
+```
+> xgb4 <- xgboost(data = d_train,
+                  eta = 0.1,
+                  max_depth = 3,
+                  nrounds = 1000,
+                  early_stopping_rounds = 3,
+                  objective = "binary:logistic",
+                  eval_metric = "error",
+                  eval_metric = "auc")
+                  
+> xgb4_pred <- predict(xgb4, d_test)
+> xgb4_pred_response <- as.data.frame(xgb4_pred)
+> xgb4_pred_response$response <- as.factor(ifelse(xgb4_pred_response > 0.5, 1, 0))
+> confusionMatrix(xgb4_pred_response$response, test_var_factor)
+
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 787 113
+         1  99 420
+                                         
+               Accuracy : 0.8506            
+    ...
+```
+This produced a higher accuracy than the KNN or random forest models at 85.06%!
 
 ## Support Vector Machines (SVM)
+The final method I used was support vector machines, better known as SVM. SVM allows one to choose a kernel type for modeling. For my purposes, I started with a linear SVM kernel and then tuned models for different kernal types with the tune.svm() function from the e1071 package.
+
+Linear kernel
+```
+> svm.lin <- svm(formula = Converted ~ .,
+                 data = train,
+                 type = 'C-classification',
+                 probability = TRUE,
+                 kernel = 'linear')
+                 
+> svm_pred <- predict(svm.lin, newdata = test[-1], probability = TRUE)
+> svm_response <- as.data.frame(attr(svm_pred, "probabilities"))
+> svm_response$response <- as.factor(ifelse(svm_response$Yes > 0.5, 1, 0))
+> confusionMatrix(svm_response$response, test_var_factor)
+
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 791 157
+         1  95 376
+                                         
+               Accuracy : 0.8224    
+               
+    ...
+```
+Polynomial kernel tuning and model
+```
+> poly.tune <- tune.svm(Converted ~ .,
+                        data = train,
+                        type = 'C-classification',
+                        kernel = 'polynomial',
+                        degree=c(3, 4, 5, 6),
+                        coef0 = c(0.1, 0.5, 1, 2, 3))
+> summary(poly.tune)
+
+Parameter tuning of ‘svm’:
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+ degree coef0
+      6     3
+
+- best performance: 0.1848988 
+
+#fit model with best parameters
+> svm.poly <- svm(Converted ~ .,
+                  data = train,
+                  type = 'C-classification',
+                  kernal = 'polynomial',
+                  degree = 6,
+                  coef0 = 3,
+                  probability = TRUE)
+> poly_pred <- predict(svm.poly, newdata = test[-1], probability = TRUE)
+> poly_response <- as.data.frame(attr(poly_pred, "probabilities"))
+> poly_response$response <- as.factor(ifelse(poly_response$Yes > 0.5, 1, 0))
+> confusionMatrix(poly_response$response, test_var_factor)
+
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 827 159
+         1  59 374
+                                          
+               Accuracy : 0.8464      
+   ...
+```
+Radial kernel tuning and model
+```
+> rad.tune <- tune.svm(Converted~.,
+                       data = train,
+                       kernal = 'radial',
+                       gamma = c(0.1, 0.3, 0.5, 1, 2, 3))
+> summary(rad.tune)
+
+Parameter tuning of ‘svm’:
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+ gamma
+   0.5
+
+- best performance: 0.1791705 
+
+#fit model with best parameters
+> svm.rad <- svm(Converted ~ .,
+                 data = train,
+                 type = 'C-classification',
+                 kernel = 'radial',
+                 gamma = 0.5,
+                 probability = TRUE)
+
+> rad_pred <- predict(svm.rad, newdata = test[-1], probability = TRUE)
+> rad_response <- as.data.frame(attr(rad_pred, "probabilities"))
+> rad_response$response <- as.factor(ifelse(rad_response$Yes > 0.5, 1, 0))
+> confusionMatrix(rad_response$response, test_var_factor)
+
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 812 143
+         1  74 390
+                                          
+               Accuracy : 0.8471      
+   ...
+```
 
 # Results & Discussion
+
+## ROC Curves
 
 # Further Research
 
