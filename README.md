@@ -113,7 +113,7 @@ For classification modeling, I decided to use four different methods. I then tun
 ## K-Nearest Neighbors (KNN)
 The first method I used was K-Nearest Neighbors, or KNN. I used the train() function from the caret package which outputs a tuned model, so I didn't need to adjust the parameters after the first go. 
 
-After setting the control, I created the KNN model which selected k = 13 as the optimal value for the highest model accuracy. I then applied the optimized model to predict values against the test dataset. The resulting confusion matrix showed an accuracy of 84.21%. 
+After setting the control, I created the KNN model which selected k = 13 as the optimal value for the highest model accuracy. I then applied the optimized model to predict values against the test dataset. The KNN model's confusion matrix resulted in an accuracy of 84.21%. 
 ```
 > contr <- trainControl(method="repeatedcv", number = 10, repeats = 3)
 > knnPred <- predict(knnFit, newdata = test, type = "prob")
@@ -131,11 +131,42 @@ Prediction   0   1
                Accuracy : 0.8421          
                  95% CI : (0.8221, 0.8607)
     No Information Rate : 0.6244          
-    P-Value [Acc > NIR] : < 2.2e-16       
+    P-Value [Acc > NIR] : < 2.2e-16   
+    ...
 ```
 ## Random Forest
 The next method was Random Forest. I created a model with default values and then tuned the model using tuneRF() from the randomForest package to see if I could improve the model with a different mtry value, which is the number of variables sampled when splitting the tree nodes. The default value for classification modeling is the square root of the number of variables.
+```
+> rf <- randomForest(Converted~., data=train)
+> rf_pred <- as.data.frame(predict(rf, newdata = test, type = "prob"))
+> rf_pred$response <- as.factor(ifelse(rf_pred$Yes > 0.5, 1, 0))
+> confusionMatrix(rf_pred$response, test_var_factor)
 
+Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 821 154
+         1  65 379
+                                          
+               Accuracy : 0.8457          
+                 95% CI : (0.8258, 0.8641)
+    No Information Rate : 0.6244          
+    P-Value [Acc > NIR] : < 2.2e-16    
+    ...
+    
+> features <- setdiff(names(train), "Converted")
+> m_tune <- tuneRF(
+    x = train[features],
+    y = train$Converted,
+    ntreeTry = 500,
+    mtryStart = 2,
+    stepFactor = 2,
+    improve = 0.001,
+    trace = FALSE
+  )
+```
+The tuneRF graph plotted 
 
 ## Extreme Gradient Boosting (XGBoost)
 
