@@ -113,7 +113,7 @@ For classification modeling, I decided to use four different methods. I then tun
 ## K-Nearest Neighbors (KNN)
 The first method I used was K-Nearest Neighbors, or KNN. I used the train() function from the caret package which outputs a tuned model, so I didn't need to adjust the parameters after the first go. 
 
-After setting the control, I created the KNN model which selected k = 13 as the optimal value for the highest model accuracy. I then applied the optimized model to predict values against the test dataset. The KNN model's confusion matrix resulted in an accuracy of 84.21%. 
+After setting the control, I created the KNN model which selected k = 13 as the optimal value for the highest model accuracy. I then applied the optimized model to predict values against the test dataset. The KNN model's confusion matrix shows an accuracy of 84.21%. 
 ```
 > contr <- trainControl(method="repeatedcv", number = 10, repeats = 3)
 > knnPred <- predict(knnFit, newdata = test, type = "prob")
@@ -166,7 +166,10 @@ Prediction   0   1
     trace = FALSE
   )
 ```
-The tuneRF graph plotted 
+As seen in the graph below, using a different value for mtry did not reduce the out-of-bag (OOB) error for the model. There is no need to tune this model further.
+![Random Forest tuning graph](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/tunerf-ob-error-01.png)
+
+The random forest model with default values had an accuracy of 84.57%. 
 
 ## Extreme Gradient Boosting (XGBoost)
 
