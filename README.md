@@ -400,8 +400,8 @@ For each method, tuning the parameters resulted in a more acccurate model than t
 Model | Accuracy
 --- | ---
 KNN | 84.21%
-Random Forest - Default | 84.57%
-XGBoost - Default | 81.89%
+Random Forest - default values | 84.57%
+XGBoost - default values | 81.89%
 XGBoost - adj max depth | 83.09%
 XGBoost - adj eta | 82.95%
 XGBoost - adj max depth & eta | 85.06%
@@ -422,11 +422,17 @@ KNN & Random Forest Models | XGBoost Models | SVM Models
 --- | --- | ---
 ![ROC Curves - KNN & RF](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-knn-rf.png) | ![ROC Curves - XGBoost](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-xgb.png) | ![ROC Curves - SVM](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-svm.png)
 
+# Discussion
+A simple web search will tell you there is no single "best" classification modeling algorithm. Choosing an algorithm depends on the problem at hand, the number of variables, the number of class labels, and so on. Oftentimes, data scientists will use multiple algorithms and choose the one with the best results. 
+
+That being said, I'm not surprised to see my XGBoost model performed the best. The algorithm has gained traction in recent years and is used in many online data competitions. As Seif put it, XGBoost is highly effective because it "trains models in succession, with each new model being trained to correct the errors made by the previous ones" (2019). With my relatively simple dataset, I expected XGBoost to provide the strongest model.
+
 # Further Research
+Classification modeling for lead conversions is very low stakes. However, it can be incredibly useful t
 
 # Resources
 
-https://www.pluralsight.com/guides/encoding-data-with-r
+Singh, D. (2019, November 12). Encoding data with R. *Plural Sight.* Retrieved from https://www.pluralsight.com/guides/encoding-data-with-r
 
 https://www.r-bloggers.com/2020/02/a-guide-to-encoding-categorical-features-using-r/
 
@@ -443,3 +449,7 @@ https://towardsdatascience.com/k-nearest-neighbors-algorithm-with-examples-in-r-
 https://rpubs.com/Kushan/296706
 
 https://www.rdocumentation.org/packages/pROC/versions/1.17.0.1
+
+Seif, G. (2019, May 29). A beginner's guide to XGBoost. *Towards Data Science.* Retrieved from https://towardsdatascience.com/a-beginners-guide-to-xgboost-87f5d4c30ed7
+
+
