@@ -100,7 +100,7 @@ lm$optVariables
  [9] "Last.Notable.Activity.Modified"                                         
 [10] "Do.Not.Email"                                                           
 ```
-Based on these results, I have decided to select the following features for modeling:
+Based on these results, I selected the following features for modeling:
 * Total.Time.Spent.on.Website
 * Asymmetrique.Activity.Score
 * What.is.your.current.occupation.Working.Professional
@@ -434,6 +434,8 @@ The original dataset contained location data for the collected leads. I didn't n
 Atkinson, B. (2019, April 12). rpart: Recursive Partitioning and Regression Trees. *RDocumentation.* Retrieved from https://www.rdocumentation.org/packages/rpart/versions/4.1-15/topics/rpart
 
 De Silva, K. (2017, August 4). Machine learning SVM modelling with Pima Indians Diabetes data. *RPubs.* Retrieved from https://rpubs.com/Kushan/296706
+
+Kalyan, L. (2020). Lead scoring X online education. *Kaggle.* Retrieved from https://www.kaggle.com/lakshmikalyan/lead-scoring-x-online-education?select=Leads+X+Education.csv
 
 Kianjana. (2020, December 16). Decluttering the performance measures of classification models. *Analytics Vidhya.* Retrieved from https://www.analyticsvidhya.com/blog/2020/12/decluttering-the-performance-measures-of-classification-models/
 
