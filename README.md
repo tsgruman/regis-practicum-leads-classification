@@ -428,28 +428,25 @@ A simple web search will tell you there is no single "best" classification model
 That being said, I'm not surprised to see my XGBoost model performed the best. The algorithm has gained traction in recent years and is used in many online data competitions. As Seif put it, XGBoost is highly effective because it "trains models in succession, with each new model being trained to correct the errors made by the previous ones" (2019). With my relatively simple dataset, I expected XGBoost to provide the strongest model.
 
 # Further Research
-Classification modeling for lead conversions is very low stakes. However, it can be incredibly useful t
+The original dataset contained location data for the collected leads. I didn't need that data for the scope of my project, but it be valuable information for further research to split the data by region. If a company is large enough and has markets across the globe, it may be useful to examine how each region differs in variable importance. For example, does one region pull in more leads through ads? Do regions with higher employment rates care less about better career prospects when research online courses? Does direct contact with the lead (email, phone call, etc.) make it more or less likely a lead will convert? Answering these questions per region instead of across the entire dataset could set up regional sales teams for higher success rates.
 
 # Resources
+Atkinson, B. (2019, April 12). rpart: Recursive Partitioning and Regression Trees. *RDocumentation.* Retrieved from https://www.rdocumentation.org/packages/rpart/versions/4.1-15/topics/rpart
 
-Singh, D. (2019, November 12). Encoding data with R. *Plural Sight.* Retrieved from https://www.pluralsight.com/guides/encoding-data-with-r
+De Silva, K. (2017, August 4). Machine learning SVM modelling with Pima Indians Diabetes data. *RPubs.* Retrieved from https://rpubs.com/Kushan/296706
 
-https://www.r-bloggers.com/2020/02/a-guide-to-encoding-categorical-features-using-r/
+Kianjana. (2020, December 16). Decluttering the performance measures of classification models. *Analytics Vidhya.* Retrieved from https://www.analyticsvidhya.com/blog/2020/12/decluttering-the-performance-measures-of-classification-models/
 
-https://cran.r-project.org/web/packages/Boruta/Boruta.pdf
+Kuhn, M. (2020, March 20). rfe: Backwards Feature Selection. *RDocumentation.* Retrieved from https://www.rdocumentation.org/packages/caret/versions/6.0-86/topics/rfe
 
-https://www.rdocumentation.org/packages/rpart/versions/4.1-15/topics/rpart
+Kursa, M. B. (2020, May 21). Package 'Boruta.' *CRAN.* Retrieved from https://cran.r-project.org/web/packages/Boruta/Boruta.pdf
 
-https://www.rdocumentation.org/packages/caret/versions/6.0-86/topics/rfe
+Mozumdar, A. (2020, February 1). A guide to encoding categorical features using R. *R-Bloggers.* Retrieved from https://www.r-bloggers.com/2020/02/a-guide-to-encoding-categorical-features-using-r/
 
-https://www.analyticsvidhya.com/blog/2020/12/decluttering-the-performance-measures-of-classification-models/
-
-https://towardsdatascience.com/k-nearest-neighbors-algorithm-with-examples-in-r-simply-explained-knn-1f2c88da405c
-
-https://rpubs.com/Kushan/296706
-
-https://www.rdocumentation.org/packages/pROC/versions/1.17.0.1
+Robin, X. (2021, January 13). pROC. *RDocumentation.* Retrieved from https://www.rdocumentation.org/packages/pROC/versions/1.17.0.1
 
 Seif, G. (2019, May 29). A beginner's guide to XGBoost. *Towards Data Science.* Retrieved from https://towardsdatascience.com/a-beginners-guide-to-xgboost-87f5d4c30ed7
 
+Singh, D. (2019, November 12). Encoding data with R. *Plural Sight.* Retrieved from https://www.pluralsight.com/guides/encoding-data-with-r
 
+Sirohi, K. (2018, December 30). K-nearest neighbors algorithm with examples in R (Simply explained knn). *Towards Data Science.* Retrieved from https://towardsdatascience.com/k-nearest-neighbors-algorithm-with-examples-in-r-simply-explained-knn-1f2c88da405c
