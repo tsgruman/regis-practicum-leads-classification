@@ -395,7 +395,19 @@ To measure the performance of my models, I decided to compare accuracy scores an
 * AUC & ROC: The ROC curve plots a model's True Positive Rate (Sensitivity) against the model's False Positive Rate (Specificity). The AUC is then calculated as the total area under the ROC curve. A value of AUC = 1 indicates a perfect model while a value of AUC = 0.5 indicates the model is predicting values randomly. 
 
 ## Comparing Accuracy
-For each method, tuning the parameters resulted in a more acccurate model than the default values. If measuring performance by accuracy scores from each confusion matrix, the strongest model is the XGBoost with the tuned max depth and eta values with an accuracy of 85.06%. 
+For each method, tuning the parameters resulted in a more acccurate model than the default values. If measuring performance by accuracy scores from each confusion matrix, the strongest model is the XGBoost with the tuned max depth and eta values with an accuracy of 85.06%.
+
+Model | Accuracy
+--- | ---
+KNN | 84.21%
+Random Forest - Default | 84.57%
+XGBoost - Default | 81.89%
+XGBoost - adj max depth | 83.09%
+XGBoost - adj eta | 82.95%
+XGBoost - adj max depth & eta | 85.06%
+SVM - linear | 82.24%
+SVM - polynomial | 84.64%
+SVM - radial | 84.71%
 
 ## Comparing AUC/ROC Curves
 I used the pROC package for all my ROC calculations and plotting. Plotting all my models onto a single ROC plot resulted in the following:
@@ -404,7 +416,7 @@ I used the pROC package for all my ROC calculations and plotting. Plotting all m
 
 It is difficult to distinguish between each model, but the AUC values show the xgboost4 model (the XGBoost model with the tuned max depth and eta values) performed the best. This lines up with the conclusion based on accuracy scores.
 
-For a better visualization of the ROC curves, I split ROC curves onto three separate graphs.
+For an easier-to-read visualization, I split the ROC curves onto three separate graphs.
 
 KNN & Random Forest Models | XGBoost Models | SVM Models
 --- | --- | ---
