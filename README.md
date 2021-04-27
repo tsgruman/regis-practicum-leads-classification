@@ -400,13 +400,14 @@ For each method, tuning the parameters resulted in a more acccurate model than t
 ## Comparing AUC/ROC Curves
 I used the pROC package for all my ROC calculations and plotting. Plotting all my models onto a single ROC plot resulted in the following:
 
-![ROC Curves - All]()
+![ROC Curves - All](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-all.png)
 
 It is difficult to distinguish between each model, but the AUC values show the xgboost4 model (the XGBoost model with the tuned max depth and eta values) performed the best. This lines up with the conclusion based on accuracy scores.
 
 For a better visualization of the ROC curves, I split ROC curves onto three separate graphs.
-
-
+KNN & Random Forest Models | XGBoost Models | SVM Models
+--- | ---
+![ROC Curves - KNN & RF](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-knn-rf.png) | ![ROC Curves - XGBoost](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-xgb.png) | ![ROC Curves - SVM](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-svm.png)
 
 # Further Research
 
