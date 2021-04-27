@@ -255,6 +255,21 @@ ggplot(data = sub1, aes(x = Asymmetrique.Profile.Score)) +
   geom_bar() +
   ggtitle("Count of Asymmetric Profile Score")
 
+#plot lead origin
+ggplot(data = sub1, aes(x = Lead.Origin)) +
+  geom_bar() +
+  ggtitle("Lead Origin")
+
+#plot what matters most
+ggplot(data = sub1, aes(x = What.matters.most.to.you.in.choosing.a.course)) +
+  geom_bar() +
+  ggtitle("What Matters Most")
+
+#plot occupation
+ggplot(data = sub1, aes(x = What.is.your.current.occupation)) +
+  geom_bar() +
+  ggtitle("Current Occupation")
+
 #plot Page Views boxplot and remove outliers
 
 ggplot(data = sub1, aes(x=Page.Views.Per.Visit)) +

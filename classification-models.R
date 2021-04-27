@@ -227,6 +227,13 @@ svm_mat <- table(test$Converted, svm_response$response)
 svm_mat
 accuracy(svm_mat)
 
+#tune linear model
+lin.tune <- tune.svm(Converted ~ .,
+                     data = train,
+                     kernel = "linear",
+                     cost = c(0.001, 0.01, 0.1, 1, 5, 10))
+summary(lin.tune) #cost = 1 is default so no need to tune model
+
 #tune polynomial SVM model
 #https://rpubs.com/Kushan/296706
 poly.tune <- tune.svm(Converted ~ .,
