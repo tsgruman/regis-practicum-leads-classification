@@ -405,8 +405,9 @@ I used the pROC package for all my ROC calculations and plotting. Plotting all m
 It is difficult to distinguish between each model, but the AUC values show the xgboost4 model (the XGBoost model with the tuned max depth and eta values) performed the best. This lines up with the conclusion based on accuracy scores.
 
 For a better visualization of the ROC curves, I split ROC curves onto three separate graphs.
+
 KNN & Random Forest Models | XGBoost Models | SVM Models
---- | ---
+--- | --- | ---
 ![ROC Curves - KNN & RF](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-knn-rf.png) | ![ROC Curves - XGBoost](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-xgb.png) | ![ROC Curves - SVM](https://github.com/tsgruman/regis-practicum-leads-classification/blob/main/assets/roc-svm.png)
 
 # Further Research
@@ -429,4 +430,4 @@ https://towardsdatascience.com/k-nearest-neighbors-algorithm-with-examples-in-r-
 
 https://rpubs.com/Kushan/296706
 
-
+https://www.rdocumentation.org/packages/pROC/versions/1.17.0.1
