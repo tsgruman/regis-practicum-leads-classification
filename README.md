@@ -389,10 +389,43 @@ Prediction   0   1
    ...
 ```
 
-# Results & Discussion
+# Results
+To measure the performance of my models, I decided to compare accuracy scores and area under curve (AUC) / receiver operating characteristics (ROC) curve values. 
+* Accuracy: A model's accuracy can be obtained from the confusion matrix. It is a calculation of the sum of True Positive and True Negative outputs divided by the total sum of True Positives, True Negatives, False Positives, and False Negatives.
+* AUC & ROC: The ROC curve plots a model's True Positive Rate (Sensitivity) against the model's False Positive Rate (Specificity). The AUC is then calculated as the total area under the ROC curve. A value of AUC = 1 indicates a perfect model while a value of AUC = 0.5 indicates the model is predicting values randomly. 
 
-## ROC Curves
+## Comparing Accuracy
+For each method, tuning the parameters resulted in a more acccurate model than the default values. If measuring performance by accuracy scores from each confusion matrix, the strongest model is the XGBoost with the tuned max depth and eta values with an accuracy of 85.06%. 
+
+## Comparing AUC/ROC Curves
+I used the pROC package for all my ROC calculations and plotting. Plotting all my models onto a single ROC plot resulted in the following:
+
+![ROC Curves - All]()
+
+It is difficult to distinguish between each model, but the AUC values show the xgboost4 model (the XGBoost model with the tuned max depth and eta values) performed the best. This lines up with the conclusion based on accuracy scores.
+
+For a better visualization of the ROC curves, I split ROC curves onto three separate graphs.
+
+
 
 # Further Research
 
-# References
+# Resources
+
+https://www.pluralsight.com/guides/encoding-data-with-r
+
+https://www.r-bloggers.com/2020/02/a-guide-to-encoding-categorical-features-using-r/
+
+https://cran.r-project.org/web/packages/Boruta/Boruta.pdf
+
+https://www.rdocumentation.org/packages/rpart/versions/4.1-15/topics/rpart
+
+https://www.rdocumentation.org/packages/caret/versions/6.0-86/topics/rfe
+
+https://www.analyticsvidhya.com/blog/2020/12/decluttering-the-performance-measures-of-classification-models/
+
+https://towardsdatascience.com/k-nearest-neighbors-algorithm-with-examples-in-r-simply-explained-knn-1f2c88da405c
+
+https://rpubs.com/Kushan/296706
+
+
