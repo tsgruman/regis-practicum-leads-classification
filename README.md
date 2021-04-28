@@ -15,11 +15,10 @@ This project was completed in R using RStudio.
 
 Libraries used include:
 * tidyverse - Data manipulation and plotting
-* scales - Graphics system manipulation
+* ggpubr - Data visualization for ggplot2
 * xlsx - Manipulating xls files
 * RRF - Feature selection for Random Forest models
 * Boruta - Feature selection tools
-* ggpubr - Data visualization for ggplot2
 * caret - Various functions for classification and regression modeling
 * randomForest - Random Forests classfication and regression modeling
 * xgboost - Extreme Gradient Boosting modeling interface
